@@ -24,17 +24,17 @@ class App:
         self.root.resizable(False, False)
         self.root.attributes("-topmost", True)
 
-        # Ruta base para PyInstaller
+        # 
         if getattr(sys, 'frozen', False):
             self.base_path = sys._MEIPASS
         else:
             self.base_path = os.path.dirname(os.path.abspath(__file__))
 
-        # --- Icono Tkinter ---
+        # icono
         icono_tk_path = os.path.join(self.base_path, "iconotk.ico")
         self.root.iconbitmap(icono_tk_path)
 
-        # --- Fondo ---
+        # bg
         self.ruta_fondo = os.path.join(self.base_path, "Fondo1.png")
         self.fondo_img = None
         self.canvas = tk.Canvas(root, width=400, height=200, highlightthickness=0)
@@ -46,7 +46,7 @@ class App:
         else:
             print("No se encontró la imagen de fondo.")
 
-        # --- Lista de títulos ---
+        # titulos hasta el momento
         self.lista_titulos = [
             ("Protector elianod", 60, "Title_1470.png", "Title_1470_opaco.png"),
             ("Gruta", 30, "Title_1840.png", "Title_1840_opaco.png"),
@@ -57,14 +57,14 @@ class App:
             ("Resurrección", 180, "Res.png", "Res_opaco.png"),
         ]
 
-        # --- Teclas por slot ---
+        # teclas
         teclas_slots = ["f1", "f2", "f3", "f4"]
 
         self.lista_opciones = [
             Opcion(*self.lista_titulos[i], teclas_slots[i]) for i in range(4)
         ]
 
-        # --- GUI ---
+        # interfaz
         self.labels_nombre = []
         self.labels_imagen = []
         self.labels_tiempo = []
@@ -95,7 +95,7 @@ class App:
 
             self.tick(i)
 
-        # Hook teclado
+        # teclado
         keyboard.hook(self.on_key_event)
 
     def on_key_event(self, event):
@@ -147,3 +147,4 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = App(root)
     root.mainloop()
+
